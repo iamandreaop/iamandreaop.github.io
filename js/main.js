@@ -327,7 +327,7 @@
   }
 
   // --- Password Gate ---
-  var BLOG_PASSWORD = '1234';
+  var BLOG_PASSWORD = 'Andrea5work';
   var SESSION_KEY = 'blog_unlocked';
 
   function isBlogUnlocked() {
