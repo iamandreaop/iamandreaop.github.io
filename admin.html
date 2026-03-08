@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Admin — Andrea Ong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Quill WYSIWYG Editor -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8F8F6;
+      --surface: #FFFFFF;
+      --border: #E2E0DC;
+      --border-light: #EDEBE7;
+      --text: #1A1A1A;
+      --text-secondary: #5A5A58;
+      --text-tertiary: #8A8A86;
+      --accent: #2C6ECB;
+      --accent-hover: #1A5DB0;
+      --danger: #D72C0D;
+      --danger-hover: #B52009;
+      --success: #23802C;
+      --radius: 8px;
+    }
+    html { font-size: 15px; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* Layout */
+    .admin { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+    .sidebar__title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .sidebar__subtitle {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      padding: 0 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar__section {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      padding: 1.5rem 1.5rem 0.5rem;
+    }
+    .sidebar__link {
+      display: block;
+      padding: 0.55rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .sidebar__link:hover { background: var(--bg); color: var(--text); }
+    .sidebar__link.active { background: #EBF0FF; color: var(--accent); font-weight: 600; }
+
+    .main { margin-left: 240px; flex: 1; padding: 2rem 3rem 6rem; max-width: 900px; }
+    .main h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .main__desc { color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 2rem; }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .card__title { font-size: 1rem; font-weight: 600; }
+
+    /* Form Elements */
+    .field { margin-bottom: 1.25rem; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+    .field label .hint {
+      font-weight: 400;
+      color: var(--text-tertiary);
+      font-size: 0.72rem;
+    }
+    .field input[type="text"],
+    .field input[type="url"],
+    .field input[type="email"],
+    .field input[type="date"],
+    .field textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(44, 110, 203, 0.12);
+    }
+    .field textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+    .field textarea.tall { min-height: 200px; }
+
+    /* Quill Editor Styling */
+    .wysiwyg-editor {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      min-height: 150px;
+    }
+    .wysiwyg-editor.tall {
+      min-height: 250px;
+    }
+    .wysiwyg-editor .ql-toolbar {
+      border: none;
+      border-bottom: 1px solid var(--border-light);
+      background: var(--surface);
+      border-radius: 6px 6px 0 0;
+    }
+    .wysiwyg-editor .ql-container {
+      border: none;
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+    .wysiwyg-editor .ql-editor {
+      min-height: 120px;
+      padding: 0.75rem;
+    }
+    .wysiwyg-editor.tall .ql-editor {
+      min-height: 200px;
+    }
+    .wysiwyg-editor .ql-editor.ql-blank::before {
+      color: var(--text-tertiary);
+      font-style: normal;
+    }
+
+    /* Image Upload */
+    .image-upload {
+      margin-top: 0.5rem;
+    }
+    .image-preview {
+      margin-top: 0.75rem;
+      padding: 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .image-preview img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 4px;
+      display: block;
+    }
+    .image-preview__info {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+    .file-input-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .file-input-wrapper input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    .file-input-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .file-input-label:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Tags Input */
+    .tags-input {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0.4rem 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: text;
+    }
+    .tags-input:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(44, 110, 203, 0.12);
+    }
+    .tags-input .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .tags-input .tag button {
+      background: none;
+      border: none;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
+    }
+    .tags-input .tag button:hover { color: var(--danger); }
+    .tags-input input {
+      border: none;
+      background: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.2rem;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn--primary { background: var(--accent); color: #fff; }
+    .btn--primary:hover { background: var(--accent-hover); }
+    .btn--danger { background: var(--danger); color: #fff; }
+    .btn--danger:hover { background: var(--danger-hover); }
+    .btn--outline { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn--outline:hover { border-color: var(--text-secondary); }
+    .btn--sm { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+    .btn--lg { padding: 0.7rem 1.5rem; font-size: 0.88rem; }
+
+    .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Sections accordion */
+    .section-item {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-item__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-item__title {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Item list for case studies / blog */
+    .item-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .item-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .item-card__header:hover { background: var(--bg); }
+    .item-card__header h3 { font-size: 0.95rem; font-weight: 600; }
+    .item-card__header span { font-size: 0.78rem; color: var(--text-tertiary); }
+    .item-card__body { padding: 0 1.25rem 1.25rem; display: none; }
+    .item-card__body.open { display: block; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--text);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Save bar */
+    .save-bar {
+      position: fixed;
+      bottom: 0;
+      left: 240px;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .save-bar p { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 1.5rem; }
+      .save-bar { left: 0; padding: 0.75rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar__title">Andrea Ong</div>
+    <div class="sidebar__subtitle">Content Manager</div>
+
+    <div class="sidebar__section">Content</div>
+    <a class="sidebar__link active" data-page="settings" onclick="showPage('settings')">Site Settings</a>
+    <a class="sidebar__link" data-page="bio" onclick="showPage('bio')">Bio / About</a>
+    <a class="sidebar__link" data-page="blog" onclick="showPage('blog')">Blog Posts</a>
+    <a class="sidebar__link" data-page="case-studies" onclick="showPage('case-studies')">Case Studies</a>
+    <a class="sidebar__link" data-page="coaching" onclick="showPage('coaching')">Coaching</a>
+
+    <div class="sidebar__section">Actions</div>
+    <a class="sidebar__link" onclick="saveAll()">Save All Changes</a>
+    <a class="sidebar__link" href="index.html" target="_blank">Preview Site &rarr;</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main" id="main">
+    <!-- Filled by JS -->
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Save Bar -->
+<div class="save-bar">
+  <p>Changes are saved as downloadable files to replace in your <code>content/</code> folder.</p>
+  <button class="btn btn--primary btn--lg" onclick="saveAll()">Save All Changes</button>
+</div>
+
+<!-- Load content files -->
+<script src="content/settings.js"></script>
+<script src="content/bio.js"></script>
+<script src="content/case-studies.js"></script>
+<script src="content/blog.js"></script>
+<script src="content/coaching.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const C = window.SITE_CONTENT || {};
+  let currentPage = 'settings';
+  let editors = {}; // Store Quill editor instances
+
+  // --- Show Toast ---
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  // --- Download Helper ---
+  function downloadFile(filename, content) {
+    const blob = new Blob([content], { type: 'application/javascript' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // --- WYSIWYG Editor Helpers ---
+  function textToHtml(text) {
+    // Convert plain text with line breaks to HTML paragraphs
+    if (!text) return '';
+    // Split by double line breaks (paragraph separator)
+    const paragraphs = text.split(/\n\s*\n/);
+    return paragraphs.map(p => {
+      // Replace single line breaks with <br> tags
+      const withBreaks = p.trim().replace(/\n/g, '<br>');
+      return withBreaks ? `<p>${withBreaks}</p>` : '';
+    }).filter(p => p).join('');
+  }
+
+  function createWysiwygEditor(id, content, tall = false) {
+    const editorId = `editor-${id}`;
+    const tallClass = tall ? ' tall' : '';
+    // Convert plain text to HTML for proper rendering in WYSIWYG
+    const htmlContent = textToHtml(content);
+    return `<div id="${editorId}" class="wysiwyg-editor${tallClass}">${htmlContent}</div>`;
+  }
+
+  function initializeQuillEditors() {
+    // Destroy previous editors
+    Object.values(editors).forEach(editor => {
+      if (editor && editor.container) {
+        editor.disable();
+      }
+    });
+    editors = {};
+
+    // Initialize all editors on the page
+    document.querySelectorAll('[id^="editor-"]').forEach(el => {
+      const editorId = el.id;
+      const quill = new Quill(`#${editorId}`, {
+        theme: 'snow',
+        placeholder: 'Start typing...',
+        modules: {
+          toolbar: [
+            [{ 'header': [2, 3, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link'],
+            ['clean']
+          ]
+        }
+      });
+      editors[editorId] = quill;
+    });
+  }
+
+  function getEditorContent(id) {
+    const editorId = `editor-${id}`;
+    const editor = editors[editorId];
+    if (!editor) return '';
+    const delta = editor.getContents();
+    const isEmpty = delta.ops.length === 1 && delta.ops[0].insert === '\n';
+    return isEmpty ? '' : editor.root.innerHTML.trim();
+  }
+
+  function htmlToText(html) {
+    // Convert HTML back to plain text for storage
+    if (!html) return '';
+    // Replace paragraph tags with double line breaks to preserve structure
+    html = html.replace(/<\/p>/gi, '\n\n');
+    html = html.replace(/<br\s*\/?>/gi, '\n');
+    html = html.replace(/<\/li>/gi, '\n');
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    let text = div.textContent || div.innerText || '';
+    // Clean up extra whitespace but preserve intentional line breaks
+    text = text.replace(/\n\s*\n\s*\n/g, '\n\n'); // Replace 3+ newlines with 2
+    return text.trim();
+  }
+
+  // --- Image Upload Component ---
+  function createImageUpload(id, currentPath, folder) {
+    const previewId = `preview-${id}`;
+    const inputId = `upload-${id}`;
+
+    return `
+      <div class="image-upload">
+        <div class="file-input-wrapper">
+          <input type="file" id="${inputId}" accept="image/*" onchange="handleImageUpload(event, '${id}', '${folder}')">
+          <label class="file-input-label">
+            📁 Choose Image
+          </label>
+        </div>
+        <div id="${previewId}" class="image-preview" style="display:${currentPath ? 'block' : 'none'}">
+          ${currentPath ? `<img src="${currentPath}" alt="Preview">` : ''}
+          <div class="image-preview__info">
+            <strong>Path:</strong> <span id="${previewId}-path">${currentPath || ''}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  window.handleImageUpload = function(event, id, folder) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const previewId = `preview-${id}`;
+      const preview = document.getElementById(previewId);
+      const pathSpan = document.getElementById(`${previewId}-path`);
+      const pathInput = document.getElementById(id);
+
+      // Generate path based on folder
+      const newPath = `images/${folder}/${file.name}`;
+
+      // Update preview
+      preview.style.display = 'block';
+      preview.innerHTML = `
+        <img src="${e.target.result}" alt="Preview">
+        <div class="image-preview__info">
+          <strong>Path:</strong> <span id="${previewId}-path">${newPath}</span><br>
+          <strong>Note:</strong> Save this image to <code>${newPath}</code> in your portfolio folder
+        </div>
+      `;
+
+      // Update the hidden input field with the path
+      if (pathInput) {
+        pathInput.value = newPath;
+      }
+
+      toast(`Image selected: ${file.name}`);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // --- Tags Input Component ---
+  function createTagsInput(id, tags) {
+    return `
+      <div class="tags-input" id="${id}" onclick="this.querySelector('input').focus()">
+        ${tags.map(t => `<span class="tag">${t}<button onclick="removeTag(this)" type="button">&times;</button></span>`).join('')}
+        <input type="text" placeholder="Type and press Enter" onkeydown="handleTagKey(event, this)">
+      </div>
+    `;
+  }
+
+  window.removeTag = function(btn) {
+    btn.closest('.tag').remove();
+  };
+
+  window.handleTagKey = function(e, input) {
+    if (e.key === 'Enter' && input.value.trim()) {
+      e.preventDefault();
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.innerHTML = `${input.value.trim()}<button onclick="removeTag(this)" type="button">&times;</button>`;
+      input.parentElement.insertBefore(tag, input);
+      input.value = '';
+    }
+    if (e.key === 'Backspace' && !input.value) {
+      const tags = input.parentElement.querySelectorAll('.tag');
+      if (tags.length) tags[tags.length - 1].remove();
+    }
+  };
+
+  function getTagValues(containerId) {
+    return Array.from(document.querySelectorAll(`#${containerId} .tag`)).map(t => {
+      return t.childNodes[0].textContent.trim();
+    });
+  }
+
+  // --- Page Renderers ---
+
+  function renderSettings() {
+    const s = C.settings || {};
+    return `
+      <h1>Site Settings</h1>
+      <p class="main__desc">Global settings for your portfolio site.</p>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">General</span></div>
+        <div class="field">
+          <label>Site Name</label>
+          <input type="text" id="s-siteName" value="${s.siteName || ''}">
+        </div>
+        <div class="field">
+          <label>Tagline</label>
+          <input type="text" id="s-tagline" value="${s.tagline || ''}">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="s-email" value="${s.email || ''}">
+        </div>
+        <div class="field">
+          <label>Meta Description <span class="hint">(for SEO)</span></label>
+          <textarea id="s-metaDesc">${s.metaDescription || ''}</textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Social Links</span></div>
+        <div class="field">
+          <label>LinkedIn URL</label>
+          <input type="url" id="s-linkedin" value="${(s.socialLinks || {}).linkedin || ''}">
+        </div>
+        <div class="field">
+          <label>Instagram URL</label>
+          <input type="url" id="s-instagram" value="${(s.socialLinks || {}).instagram || ''}">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Integrations</span></div>
+        <div class="field">
+          <label>Contact Form URL <span class="hint">(Formspree endpoint)</span></label>
+          <input type="url" id="s-formAction" value="${s.contactFormAction || ''}">
+        </div>
+        <div class="field">
+          <label>Google Analytics ID <span class="hint">(e.g. G-XXXXXXXXXX)</span></label>
+          <input type="text" id="s-gaId" value="${s.googleAnalyticsId || ''}">
+        </div>
+      </div>
+    `;
+  }
+
+  function renderBio() {
+    const b = C.bio || {};
+    const bodyText = (b.body || []).join('\n\n');
+    return `
+      <h1>Bio / About</h1>
+      <p class="main__desc">Your About section content and headshot.</p>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Profile</span></div>
+        <div class="field">
+          <label>Headline</label>
+          <input type="text" id="b-headline" value="${b.headline || ''}">
+        </div>
+        <div class="field">
+          <label>Intro <span class="hint">(short intro shown in hero and about)</span></label>
+          ${createWysiwygEditor('b-intro', b.intro || '')}
+        </div>
+        <div class="field">
+          <label>Bio Paragraphs</label>
+          ${createWysiwygEditor('b-body', bodyText, true)}
+        </div>
+        <div class="field">
+          <label>Headshot Image Path</label>
+          <input type="text" id="b-headshot" value="${b.headshot || ''}">
+          ${createImageUpload('b-headshot', b.headshot || '', 'headshot')}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Skills</span></div>
+        <div class="field">
+          <label>Skills <span class="hint">(press Enter to add)</span></label>
+          ${createTagsInput('b-skills', b.skills || [])}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderBlog() {
+    const posts = C.blog || [];
+    return `
+      <h1>Blog Posts</h1>
+      <p class="main__desc">Manage your blog posts. Click to expand and edit.</p>
+      <div class="btn-row" style="margin-bottom:1.5rem;">
+        <button class="btn btn--primary" onclick="addBlogPost()">+ New Blog Post</button>
+      </div>
+      <div id="blog-list">
+        ${posts.map((p, i) => renderBlogItem(p, i)).join('')}
+      </div>
+    `;
+  }
+
+  function renderBlogItem(post, index) {
+    const contentText = (post.content || []).join('\n\n');
+    return `
+      <div class="item-card" id="blog-${index}">
+        <div class="item-card__header" onclick="toggleCard('blog-${index}')">
+          <h3>${post.title || 'Untitled Post'}</h3>
+          <span>${post.date || ''}</span>
+        </div>
+        <div class="item-card__body">
+          <div class="field">
+            <label>Title</label>
+            <input type="text" class="blog-title" data-index="${index}" value="${post.title || ''}">
+          </div>
+          <div class="field">
+            <label>Subtitle</label>
+            <input type="text" class="blog-subtitle" data-index="${index}" value="${post.subtitle || ''}">
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input type="date" class="blog-date" data-index="${index}" value="${post.date || ''}">
+          </div>
+          <div class="field">
+            <label>Image Path</label>
+            <input type="text" class="blog-image" data-index="${index}" value="${post.image || ''}" id="blog-img-${index}">
+            ${createImageUpload('blog-img-' + index, post.image || '', 'blog')}
+          </div>
+          <div class="field">
+            <label>Tags <span class="hint">(press Enter to add)</span></label>
+            ${createTagsInput('blog-tags-' + index, post.tags || [])}
+          </div>
+          <div class="field">
+            <label>Content</label>
+            ${createWysiwygEditor('blog-content-' + index, contentText, true)}
+          </div>
+          <div class="btn-row" style="margin-top:1rem;">
+            <button class="btn btn--danger btn--sm" onclick="deleteBlogPost(${index})">Delete Post</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderCoaching() {
+    const c = C.coaching || {};
+    const intro = c.intro || {};
+    const whatICanDo = c.whatICanDo || {};
+    const targetAud = whatICanDo.targetAudience || {};
+    const test = c.testimonials || {};
+    const cta = c.cta || {};
+    const whatContent = (whatICanDo.content || []).join('\n\n');
+    return `
+      <h1>Coaching</h1>
+      <p class="main__desc">Manage your coaching programs, testimonials, and content.</p>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Header</span></div>
+        <div class="field">
+          <label>Headline</label>
+          <input type="text" id="co-headline" value="${c.headline || ''}">
+        </div>
+        <div class="field">
+          <label>Tagline</label>
+          <input type="text" id="co-tagline" value="${c.tagline || ''}">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Intro Section</span></div>
+        <div class="field">
+          <label>Heading</label>
+          <input type="text" id="co-intro-heading" value="${intro.heading || ''}">
+        </div>
+        <div class="field">
+          <label>Body</label>
+          ${createWysiwygEditor('co-intro-body', intro.body || '', true)}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">What I Can Do For You</span></div>
+        <div class="field">
+          <label>Heading</label>
+          <input type="text" id="co-what-heading" value="${whatICanDo.heading || ''}">
+        </div>
+        <div class="field">
+          <label>Content</label>
+          ${createWysiwygEditor('co-what-content', whatContent, true)}
+        </div>
+        <div class="field">
+          <label>Target Audience Heading</label>
+          <input type="text" id="co-target-heading" value="${targetAud.heading || ''}">
+        </div>
+        <div class="field">
+          <label>Target Audience Items <span class="hint">(one per line)</span></label>
+          <textarea id="co-target-items">${(targetAud.items || []).join('\n')}</textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header">
+          <span class="card__title">Programs <span class="hint" style="text-transform:none;font-weight:400;">(For pricing tier details, edit coaching.js directly)</span></span>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">Basic program info only. Pricing structure is complex — edit content/coaching.js for full control.</p>
+        <div id="co-programs">
+          ${(c.programs || []).map((p, i) => `
+            <div class="section-item" id="co-prog-${i}">
+              <div class="section-item__header">
+                <span class="section-item__title">${p.title || 'Program ' + (i+1)}</span>
+              </div>
+              <div class="field" style="margin-top:0.75rem;">
+                <label>Title</label>
+                <input type="text" class="co-prog-title" data-index="${i}" value="${p.title || ''}" disabled>
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea class="co-prog-desc" data-index="${i}" disabled>${p.description || ''}</textarea>
+              </div>
+              <p style="font-size:0.8rem;color:var(--text-tertiary);font-style:italic;">Edit pricing in coaching.js</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header">
+          <span class="card__title">Testimonials</span>
+          <button class="btn btn--primary btn--sm" onclick="addTestimonial()">+ Add Testimonial</button>
+        </div>
+        <div class="field">
+          <label>Section Heading</label>
+          <input type="text" id="co-test-heading" value="${test.heading || ''}">
+        </div>
+        <div id="co-testimonials">
+          ${(test.items || []).map((t, i) => `
+            <div class="section-item" id="co-test-${i}">
+              <div class="section-item__header">
+                <span class="section-item__title">${t.name || 'Testimonial ' + (i+1)}</span>
+                <button class="btn btn--danger btn--sm" onclick="deleteTestimonial(${i})">Remove</button>
+              </div>
+              <div class="field" style="margin-top:0.75rem;">
+                <label>Quote</label>
+                ${createWysiwygEditor('co-test-quote-' + i, t.quote || '', true)}
+              </div>
+              <div class="field">
+                <label>Name</label>
+                <input type="text" class="co-test-name" data-index="${i}" value="${t.name || ''}">
+              </div>
+              <div class="field">
+                <label>Role & Company</label>
+                <input type="text" class="co-test-role" data-index="${i}" value="${t.role || ''}">
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header"><span class="card__title">Call to Action</span></div>
+        <div class="field">
+          <label>Text</label>
+          ${createWysiwygEditor('co-cta-text', cta.text || '')}
+        </div>
+        <div class="field">
+          <label>Button Text</label>
+          <input type="text" id="co-cta-btn" value="${cta.buttonText || ''}">
+        </div>
+      </div>
+    `;
+  }
+
+  window.addTestimonial = function() {
+    collectCoachingData();
+    if (!C.coaching.testimonials) C.coaching.testimonials = { heading: 'How I\'ve helped designers', items: [] };
+    if (!C.coaching.testimonials.items) C.coaching.testimonials.items = [];
+    C.coaching.testimonials.items.push({ quote: '', name: 'Client Name', role: 'Role, Company' });
+    showPage('coaching');
+    toast('Testimonial added');
+  };
+
+  window.deleteTestimonial = function(i) {
+    collectCoachingData();
+    if (C.coaching.testimonials && C.coaching.testimonials.items) {
+      C.coaching.testimonials.items.splice(i, 1);
+    }
+    showPage('coaching');
+    toast('Testimonial removed');
+  };
+
+  function renderCaseStudies() {
+    const studies = C.caseStudies || [];
+    return `
+      <h1>Case Studies</h1>
+      <p class="main__desc">Manage your case studies. Click to expand and edit.</p>
+      <div class="btn-row" style="margin-bottom:1.5rem;">
+        <button class="btn btn--primary" onclick="addCaseStudy()">+ New Case Study</button>
+      </div>
+      <div id="cs-list">
+        ${studies.map((cs, i) => renderCaseStudyItem(cs, i)).join('')}
+      </div>
+    `;
+  }
+
+  function renderCaseStudyItem(cs, index) {
+    return `
+      <div class="item-card" id="cs-${index}">
+        <div class="item-card__header" onclick="toggleCard('cs-${index}')">
+          <h3>${cs.title || 'Untitled Case Study'}</h3>
+          <span>${cs.date || ''}</span>
+        </div>
+        <div class="item-card__body">
+          <div class="field">
+            <label>Title</label>
+            <input type="text" class="cs-title" data-index="${index}" value="${cs.title || ''}">
+          </div>
+          <div class="field">
+            <label>Subtitle</label>
+            <input type="text" class="cs-subtitle" data-index="${index}" value="${cs.subtitle || ''}">
+          </div>
+          <div class="field">
+            <label>Date / Timeline</label>
+            <input type="text" class="cs-date" data-index="${index}" value="${cs.date || ''}">
+          </div>
+          <div class="field">
+            <label>Overview <span class="hint">(summary shown on home page)</span></label>
+            ${createWysiwygEditor('cs-overview-' + index, cs.overview || '')}
+          </div>
+          <div class="field">
+            <label>Your Role</label>
+            <input type="text" class="cs-role" data-index="${index}" value="${cs.role || ''}">
+          </div>
+          <div class="field">
+            <label>Skills <span class="hint">(press Enter to add)</span></label>
+            ${createTagsInput('cs-skills-' + index, cs.skills || [])}
+          </div>
+          <div class="field">
+            <label>Thumbnail Image Path</label>
+            <input type="text" class="cs-thumbnail" data-index="${index}" value="${cs.thumbnail || ''}" id="cs-thumb-${index}">
+            ${createImageUpload('cs-thumb-' + index, cs.thumbnail || '', 'case-studies')}
+          </div>
+          <div class="field">
+            <label>What This Demonstrates <span class="hint">(one item per line)</span></label>
+            <textarea class="cs-demonstrates" data-index="${index}">${(cs.demonstrates || []).join('\n')}</textarea>
+          </div>
+
+          <div style="margin-top:1.25rem;">
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:var(--text-secondary);margin-bottom:0.75rem;">
+              Content Sections
+            </label>
+            <div id="cs-sections-${index}">
+              ${(cs.sections || []).map((s, si) => `
+                <div class="section-item" id="cs-${index}-sec-${si}">
+                  <div class="section-item__header">
+                    <span class="section-item__title">Section ${si + 1}</span>
+                    <button class="btn btn--danger btn--sm" onclick="deleteCsSection(${index}, ${si})">Remove</button>
+                  </div>
+                  <div class="field" style="margin-top:0.75rem;">
+                    <label>Heading</label>
+                    <input type="text" class="cs-sec-heading" data-cs="${index}" data-sec="${si}" value="${s.heading || ''}">
+                  </div>
+                  <div class="field">
+                    <label>Content</label>
+                    ${createWysiwygEditor('cs-sec-content-' + index + '-' + si, s.content || '', true)}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <button class="btn btn--outline btn--sm" onclick="addCsSection(${index})" style="margin-top:0.5rem;">+ Add Section</button>
+          </div>
+
+          <div class="btn-row" style="margin-top:1.25rem;">
+            <button class="btn btn--danger btn--sm" onclick="deleteCaseStudy(${index})">Delete Case Study</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // --- Page Navigation ---
+  window.showPage = function(page) {
+    currentPage = page;
+    document.querySelectorAll('.sidebar__link').forEach(l => l.classList.remove('active'));
+    const link = document.querySelector(`.sidebar__link[data-page="${page}"]`);
+    if (link) link.classList.add('active');
+
+    const main = document.getElementById('main');
+    switch(page) {
+      case 'settings': main.innerHTML = renderSettings(); break;
+      case 'bio': main.innerHTML = renderBio(); break;
+      case 'blog': main.innerHTML = renderBlog(); break;
+      case 'case-studies': main.innerHTML = renderCaseStudies(); break;
+      case 'coaching': main.innerHTML = renderCoaching(); break;
+    }
+
+    // Initialize Quill editors after rendering
+    setTimeout(initializeQuillEditors, 100);
+    window.scrollTo(0, 0);
+  };
+
+  // --- Toggle Card ---
+  window.toggleCard = function(id) {
+    const card = document.getElementById(id);
+    const body = card.querySelector('.item-card__body');
+    const wasOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+
+    // Initialize editors when opening card
+    if (!wasOpen) {
+      setTimeout(initializeQuillEditors, 100);
+    }
+  };
+
+  // --- Blog Actions ---
+  window.addBlogPost = function() {
+    C.blog = C.blog || [];
+    C.blog.push({
+      id: 'new-post-' + Date.now(),
+      title: 'New Blog Post',
+      subtitle: '',
+      date: new Date().toISOString().split('T')[0],
+      image: 'images/blog/',
+      tags: [],
+      content: ['Write your blog post content here.']
+    });
+    showPage('blog');
+    toast('New blog post added');
+  };
+
+  window.deleteBlogPost = function(index) {
+    if (confirm('Delete this blog post?')) {
+      C.blog.splice(index, 1);
+      showPage('blog');
+      toast('Blog post deleted');
+    }
+  };
+
+  // --- Case Study Actions ---
+  window.addCaseStudy = function() {
+    C.caseStudies = C.caseStudies || [];
+    C.caseStudies.push({
+      id: 'new-study-' + Date.now(),
+      title: 'New Case Study',
+      subtitle: '',
+      skills: [],
+      date: '',
+      thumbnail: 'images/case-studies/',
+      heroImage: 'images/case-studies/',
+      overview: '',
+      demonstrates: [],
+      role: '',
+      sections: [{ heading: 'Overview', content: '' }]
+    });
+    showPage('case-studies');
+    toast('New case study added');
+  };
+
+  window.deleteCaseStudy = function(index) {
+    if (confirm('Delete this case study?')) {
+      C.caseStudies.splice(index, 1);
+      showPage('case-studies');
+      toast('Case study deleted');
+    }
+  };
+
+  window.addCsSection = function(csIndex) {
+    collectCaseStudyData();
+    C.caseStudies[csIndex].sections.push({ heading: 'New Section', content: '' });
+    showPage('case-studies');
+    // Reopen the card
+    setTimeout(() => {
+      toggleCard('cs-' + csIndex);
+    }, 50);
+    toast('Section added');
+  };
+
+  window.deleteCsSection = function(csIndex, secIndex) {
+    collectCaseStudyData();
+    C.caseStudies[csIndex].sections.splice(secIndex, 1);
+    showPage('case-studies');
+    setTimeout(() => toggleCard('cs-' + csIndex), 50);
+    toast('Section removed');
+  };
+
+  // --- Collect Data from Forms ---
+  function slugify(str) {
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  function collectSettingsData() {
+    const el = (id) => { const e = document.getElementById(id); return e ? e.value : ''; };
+    C.settings = {
+      siteName: el('s-siteName'),
+      tagline: el('s-tagline'),
+      email: el('s-email'),
+      socialLinks: {
+        linkedin: el('s-linkedin'),
+        instagram: el('s-instagram')
+      },
+      contactFormAction: el('s-formAction'),
+      googleAnalyticsId: el('s-gaId'),
+      metaDescription: el('s-metaDesc'),
+      metaImage: (C.settings || {}).metaImage || 'images/headshot/andrea.jpg'
+    };
+  }
+
+  function collectBioData() {
+    const el = (id) => { const e = document.getElementById(id); return e ? e.value : ''; };
+    const introHtml = getEditorContent('b-intro');
+    const bodyHtml = getEditorContent('b-body');
+
+    C.bio = {
+      headline: el('b-headline'),
+      intro: htmlToText(introHtml),
+      body: htmlToText(bodyHtml).split(/\n\s*\n/).filter(p => p.trim()),
+      headshot: el('b-headshot'),
+      skills: getTagValues('b-skills')
+    };
+  }
+
+  function collectBlogData() {
+    C.blog = (C.blog || []).map((post, i) => {
+      const get = (cls) => {
+        const el = document.querySelector(`.${cls}[data-index="${i}"]`);
+        return el ? el.value : '';
+      };
+      const contentHtml = getEditorContent('blog-content-' + i);
+
+      return {
+        id: slugify(get('blog-title') || post.id),
+        title: get('blog-title') || post.title,
+        subtitle: get('blog-subtitle') || post.subtitle,
+        date: get('blog-date') || post.date,
+        image: get('blog-image') || post.image,
+        tags: getTagValues('blog-tags-' + i),
+        content: htmlToText(contentHtml).split(/\n\s*\n/).filter(p => p.trim())
+      };
+    });
+  }
+
+  function collectCaseStudyData() {
+    C.caseStudies = (C.caseStudies || []).map((cs, i) => {
+      const get = (cls) => {
+        const el = document.querySelector(`.${cls}[data-index="${i}"]`);
+        return el ? el.value : '';
+      };
+      const overviewHtml = getEditorContent('cs-overview-' + i);
+
+      const sections = [];
+      document.querySelectorAll(`[id^="cs-${i}-sec-"]`).forEach((secEl, si) => {
+        const heading = secEl.querySelector(`.cs-sec-heading[data-cs="${i}"][data-sec="${si}"]`);
+        const contentHtml = getEditorContent('cs-sec-content-' + i + '-' + si);
+        sections.push({
+          heading: heading ? heading.value : '',
+          content: htmlToText(contentHtml)
+        });
+      });
+
+      return {
+        id: slugify(get('cs-title') || cs.id),
+        title: get('cs-title') || cs.title,
+        subtitle: get('cs-subtitle') || cs.subtitle,
+        skills: getTagValues('cs-skills-' + i),
+        date: get('cs-date') || cs.date,
+        thumbnail: get('cs-thumbnail') || cs.thumbnail,
+        heroImage: cs.heroImage || '',
+        overview: htmlToText(overviewHtml),
+        demonstrates: (get('cs-demonstrates') || '').split('\n').filter(d => d.trim()),
+        role: get('cs-role') || cs.role,
+        sections: sections.length ? sections : cs.sections
+      };
+    });
+  }
+
+  function collectCoachingData() {
+    const el = (id) => { const e = document.getElementById(id); return e ? e.value : ''; };
+    const introBodyHtml = getEditorContent('co-intro-body');
+    const whatContentHtml = getEditorContent('co-what-content');
+    const ctaTextHtml = getEditorContent('co-cta-text');
+
+    // Collect testimonials
+    const testimonialItems = [];
+    document.querySelectorAll('[id^="co-test-"]').forEach((tEl, i) => {
+      const quoteHtml = getEditorContent('co-test-quote-' + i);
+      const name = tEl.querySelector(`.co-test-name[data-index="${i}"]`);
+      const role = tEl.querySelector(`.co-test-role[data-index="${i}"]`);
+      if (quoteHtml || name || role) {
+        testimonialItems.push({
+          quote: htmlToText(quoteHtml),
+          name: name ? name.value : '',
+          role: role ? role.value : ''
+        });
+      }
+    });
+
+    // Build the complete coaching object, preserving programs structure
+    C.coaching = {
+      headline: el('co-headline'),
+      tagline: el('co-tagline'),
+      intro: {
+        heading: el('co-intro-heading'),
+        body: htmlToText(introBodyHtml)
+      },
+      whatICanDo: {
+        heading: el('co-what-heading'),
+        content: htmlToText(whatContentHtml).split(/\n\s*\n/).filter(p => p.trim()),
+        targetAudience: {
+          heading: el('co-target-heading'),
+          items: el('co-target-items').split('\n').filter(i => i.trim())
+        }
+      },
+      programs: (C.coaching || {}).programs || [], // Preserve existing programs - too complex for admin
+      testimonials: {
+        heading: el('co-test-heading'),
+        items: testimonialItems
+      },
+      cta: {
+        text: htmlToText(ctaTextHtml),
+        buttonText: el('co-cta-btn'),
+        buttonLink: (C.coaching.cta || {}).buttonLink || '#contact'
+      }
+    };
+  }
+
+  // --- Generate JS Content ---
+  function toJSString(obj, indent) {
+    return JSON.stringify(obj, null, indent);
+  }
+
+  function generateSettingsJS() {
+    const s = C.settings;
+    return `// ============================================================
+// SITE SETTINGS — Edit the values below to update your site
+// ============================================================
+window.SITE_CONTENT = window.SITE_CONTENT || {};
+window.SITE_CONTENT.settings = ${toJSString(s, 2)};
+`;
+  }
+
+  function generateBioJS() {
+    const b = C.bio;
+    return `// ============================================================
+// BIO — Edit the values below to update your About section
+// ============================================================
+window.SITE_CONTENT = window.SITE_CONTENT || {};
+window.SITE_CONTENT.bio = ${toJSString(b, 2)};
+`;
+  }
+
+  function generateBlogJS() {
+    const posts = C.blog;
+    return `// ============================================================
+// BLOG POSTS — Edit or add entries below to update your Blog
+// ============================================================
+window.SITE_CONTENT = window.SITE_CONTENT || {};
+window.SITE_CONTENT.blog = ${toJSString(posts, 2)};
+`;
+  }
+
+  function generateCaseStudiesJS() {
+    const studies = C.caseStudies;
+    return `// ============================================================
+// CASE STUDIES — Edit or add entries below to update your Work section
+// ============================================================
+window.SITE_CONTENT = window.SITE_CONTENT || {};
+window.SITE_CONTENT.caseStudies = ${toJSString(studies, 2)};
+`;
+  }
+
+  function generateCoachingJS() {
+    const c = C.coaching;
+    return `// ============================================================
+// COACHING — Edit the values below to update your Coaching section
+// ============================================================
+window.SITE_CONTENT = window.SITE_CONTENT || {};
+window.SITE_CONTENT.coaching = ${toJSString(c, 2)};
+`;
+  }
+
+  // --- Save All ---
+  window.saveAll = function() {
+    // Collect current page data
+    switch(currentPage) {
+      case 'settings': collectSettingsData(); break;
+      case 'bio': collectBioData(); break;
+      case 'blog': collectBlogData(); break;
+      case 'case-studies': collectCaseStudyData(); break;
+      case 'coaching': collectCoachingData(); break;
+    }
+
+    // Download all 5 files
+    downloadFile('settings.js', generateSettingsJS());
+    setTimeout(() => downloadFile('bio.js', generateBioJS()), 200);
+    setTimeout(() => downloadFile('case-studies.js', generateCaseStudiesJS()), 400);
+    setTimeout(() => downloadFile('blog.js', generateBlogJS()), 600);
+    setTimeout(() => downloadFile('coaching.js', generateCoachingJS()), 800);
+
+    toast('All files saved! Move them to your content/ folder.');
+  };
+
+  // --- Init ---
+  showPage('settings');
+})();
+</script>
+
+</body>
+</html>
