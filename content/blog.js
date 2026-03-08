@@ -226,5 +226,35 @@ window.SITE_CONTENT.blog = [
       "Anticipating is almost the result of effective informing and aligning. By doing the work of the former, I'm able to anticipate what my manager needs and with any luck, be an effective thought partner. This is my ultimate goal with managing up: to be more than simply the next rung below. I want to be the belay line.",
       "What do you think? What have I missed? How do you manage up?"
     ]
+  },
+  {
+    "id": "sketchnote-how-to-craft-a-winning-career-narrative",
+    "title": "Sketchnote: How to Craft a Winning Career Narrative that Speaks & Sells in a World of Constant Change",
+    "subtitle": "Sketchnotes from Trishala Pillai's talk at BLEND 2026",
+    "date": "2026-03-08",
+    "image": "images/blog/story-thumb.jpg",
+    "tags": [
+      "Sketchnotes",
+      "Conference",
+      "Career"
+    ],
+    "content": [
+      "My sketchnote of Trishala Pillai's talk at BLEND 2026 in the beautiful Stratford, Ontario campus of the University of Waterloo's School of Interaction Design."
+    ]
+  },
+  {
+    "id": "sketchnote-i-aye-ai-whats-left-for-us",
+    "title": "Sketchnote: I Aye AI: What's Left for Us",
+    "subtitle": "Sketchnotes from Gagan Diesh's talk at BLEND 2026",
+    "date": "2026-03-08",
+    "image": "images/blog/iayeai-thumb.jpg",
+    "tags": [
+      "Sketchnotes",
+      "Conference",
+      "AI"
+    ],
+    "content": [
+      "My sketchnote of Gagan Diesh's talk at BLEND 2026 at the University of Waterloo's School of Interaction Design in beautiful Stratford, Ontario."
+    ]
   }
 ];
