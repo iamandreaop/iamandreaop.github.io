@@ -35,7 +35,7 @@ window.SITE_CONTENT.caseStudies = [
       },
       {
         "heading": "The Design Strategy",
-        "content": "We needed to make three critical decisions:\n\n1. What should be in the MVP?\n2. Whose problem should we solve first?\n3. Where and how to integrate the new capability into the workflow and interface?\n\nThe strategy I used was to identify work that could drive the greatest impact and value for our key user group — the RFP team members who respond to non-English RFPs. This led us to reframe from MVP to MVE — Most Valuable Experience."
+        "content": "We needed to make three critical decisions:\n\n<ul><li>What should be in the MVP?</li><li>Whose problem should we solve first?</li><li>Where and how to integrate the new capability into the workflow and interface?</li></ul>\n\nThe strategy I used was to identify work that could drive the greatest impact and value for our key user group — the RFP team members who respond to non-English RFPs. This led us to reframe from MVP to MVE — Most Valuable Experience."
       },
       {
         "heading": "Balancing User Needs With System Needs",
@@ -43,7 +43,7 @@ window.SITE_CONTENT.caseStudies = [
       },
       {
         "heading": "The Collaboration Strategy",
-        "content": "The core team consisted of three senior team members representing product management and engineering. Getting them aligned with design decisions was mission-critical. My most important work was bringing them, and other stakeholders, along for the ride using two methods:\n\n• Co-create and collaborate to define the UX of the MVP\n• Use the Socratic method to balance Engineering and User needs"
+        "content": "The core team consisted of three senior team members representing product management and engineering. Getting them aligned with design decisions was mission-critical. My most important work was bringing them, and other stakeholders, along for the ride using two methods:\n\n<ul><li>Co-create and collaborate to define the UX of the MVP</li><li>Use the Socratic method to balance Engineering and User needs</li></ul>"
       },
       {
         "heading": "Iteration 1: View Translated RFP on Demand",
@@ -98,7 +98,7 @@ window.SITE_CONTENT.caseStudies = [
       },
       {
         "heading": "Assumption Testing",
-        "content": "I directed my Senior UX Researcher to validate three assumptions:\n\n1. NPS questions are too vague, leading to poor response outcomes\n2. PMF questions are more specific, so they should elicit better response outcomes\n3. Business stakeholders are attached to NPS and might be reluctant to replace it with something unfamiliar"
+        "content": "I directed my Senior UX Researcher to validate three assumptions:\n\n<ul><li>NPS questions are too vague, leading to poor response outcomes</li><li>PMF questions are more specific, so they should elicit better response outcomes</li><li>Business stakeholders are attached to NPS and might be reluctant to replace it with something unfamiliar</li></ul>"
       },
       {
         "heading": "Methodology",

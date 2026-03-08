@@ -312,7 +312,7 @@
           ${cs.sections.map(s => `
             <div class="detail-content__section reveal">
               <h3>${s.heading}</h3>
-              ${s.content.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+              ${s.content.split('\n\n').map(p => p.trimStart().startsWith('<') ? p : `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')}
             </div>
           `).join('')}
 
