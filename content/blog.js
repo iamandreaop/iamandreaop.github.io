@@ -256,5 +256,34 @@ window.SITE_CONTENT.blog = [
     "content": [
       "My sketchnote of Gagan Diesh's talk at BLEND 2026 at the University of Waterloo's School of Interaction Design in beautiful Stratford, Ontario."
     ]
+  },
+  {
+    "id": "own-the-loop",
+    "title": "Own the Loop",
+    "subtitle": "",
+    "date": "2026-03-12",
+    "image": "images/blog/loop-thumb.jpg",
+    "tags": [
+      "AI",
+      "Design",
+      "Strategy",
+      "Leadership"
+    ],
+    "content": [
+      "\"The AI does the middle, the humans do the ends.\" \"AI now does the production layer, so that humans do the strategic layer.\" We've all heard / read variations on these themes. But what do these statements REALLY mean for real? What are the ends? What's the strategic layer? And how on earth do we do these things? What does it look like to do these things?",
+      "As designers, the strategic parts we're uniquely equipped to do are problem framing and stakeholder alignment to build a shared understanding of what problems we're solving as well as what options we have for solving it.",
+      "Problem framing starts with the right questions: What problem are we actually solving? For whom? How will we know we've solved it?",
+      "Stakeholder alignment means getting the people with opinions into agreement on those questions before we start building.",
+      "My favourite method for interrogating the problem space and the alignment space is prototyping. If we're unclear about what problem we're solving, the prototyping will be hard — a sign we can use to do more work to gather evidence and interpret the data into viable problem statements. Once we have those problem statements, we can execute prototypes against them and use them for stakeholder reactions.",
+      "Why? Because we all love to sh*t on ideas that we can see. Prototypes help us expose assumptions, get gut reactions, validate hypotheses. They get the conversation away from the theoretical, which runs the risk of going around in circles. They focus the conversation on concrete specifics.",
+      "LLMs have collapsed the cost of making things react-able. They've changed the economics of design conversations. What they haven't changed is the nature of those conversations. Cheap prototypes are only valuable downstream of good problem framing. LLMs tempt people to skip the part that makes prototyping work.",
+      "The cheap design doing enabled by LLMs allow us to run more hypothesis cycles in the same amount of time, allowing stakeholders to react earlier and crystallize their thinking sooner. Cheaper and faster design doing creates the conditions for faster and more insightful design thinking.",
+      "There's a framework that I use every day, that I believe is the bridge designers need right now. A long time ago, the very learned Matthew Milan taught me about John Boyd's OODA loop. OODA is an acronym for Observe, Orient, Decide, Act. Boyd's framework reminds us that context matters: observe what's in front of us, but remember to orient that data in the context of everything we know. He reminds us to pattern-match intentionally rather than relying solely on heuristics. The Decide and Act parts are another reminder not to fall into the trap of analysis paralysis.",
+      "Boyd's insight was that speed through the loop compounds. The team that orients and decides faster doesn't just win individual exchanges — they get inside the opponent's loop and make their decisions irrelevant. LLMs compress the Act step, which accelerates the whole loop. More loops per sprint means faster learning, which compounds into better outcomes.",
+      "This compounding creates two competitive edges because it's not just speed that matters — it's relative speed. If designers are running five hypothesis cycles while stakeholders are still debating the first one theoretically, we've gotten inside their uncertainty. We arrive at the conversation with evidence that they can use to test their own thinking. Externally, the team that learns fastest gets to a better solution before the competition does — and gets there with evidence, not assumptions.",
+      "Boyd also emphasized that a fast but disoriented loop is worse than a slow oriented one — garbage in, garbage out faster. This brings me back to my earlier point about problem framing and stakeholder alignment. In fact, these aren't just bookends, they're Boyd's Orient step. Skip it and faster loops just accelerate us towards the wrong answer.",
+      "LLMs make the Act step cheap. That's only valuable if the Observe and Orient steps are done well — which still requires human strategic judgment and learned wisdom gained through lived experience.",
+      "The designer's job shifts toward owning the loop, not executing within it. Owning the loop means the designer is responsible for the cadence of learning, not just the quality of the artifact. In practice: we set the hypothesis before the prototype is built, we define what reaction we're looking for, and we synthesize what we learned before the next loop starts. The prototype is evidence. We're the ones deciding what question it answers."
+    ]
   }
 ];
