@@ -258,6 +258,40 @@ window.SITE_CONTENT.blog = [
     ]
   },
   {
+    "id": "own-the-loop-junior-designer-edition",
+    "title": "Own the Loop: The Junior Designer Edition",
+    "subtitle": "",
+    "date": "2026-03-14",
+    "image": "images/blog/seed-thumb.jpg",
+    "tags": [
+      "AI",
+      "Design",
+      "Leadership",
+      "Coaching"
+    ],
+    "content": [
+      "In a <a href=\"#blog/own-the-loop\">previous post titled Own the Loop</a>, I argued that LLMs compress the economic cost of design conversations, freeing up designers to own the OODA loop. Owning the loop means designers can hold themselves responsible for the cadence of learning, not just for the quality of the artifact. We set the hypothesis before the prototype is built, we define what reaction we're looking for, and we synthesize what we learned before the next learning loop starts.",
+      "The B-side of that discussion is one that plagues me even more than the question of what's left for designers when LLMs can handle production work: what's the role of junior designers in this reality? If we don't invest in training juniors today, where will tomorrow's seniors come from?",
+      "<strong>The shadow side</strong>",
+      "What are juniors actually developing when they prototype with LLMs? It's no longer the craft of making the artifact. It's the judgment that comes from being wrong repeatedly in low-stakes situations — learning to read a room when a prototype lands badly, learning which assumptions were load-bearing, learning how to reframe after failure. This is what LLMs can't replace and seniors can't transfer through observation alone. Judgement is experiential. It requires repetition. Intuition can't be conferred, bought in a workshop, prompted into existence via LLMs–it needs to be earned.",
+      "<strong>Coaching inside the loop</strong>",
+      "Orienting the observed facts to current conditions is easier said than done. We can only build this capability through accumulated OODA loops. Pattern recognition can only be earned through experience. Juniors need volume of OODA loops, with senior designers coaching them through their pattern matching at the Orient step, not just quality control at the Act step. I've been prototyping a three-part methodology: check in, critique, and reflect.",
+      "<img src=\"images/blog/ooda.png\" alt=\"OODA loop diagram\" style=\"width:100%;margin:1rem 0;\">",
+      "<strong>Check-in</strong>",
+      "The key is to share early and often in order to lower the stakes, to lower the cost of being wrong. With prototyping and production costs compressed, training junior designers can actually be more efficient than in the era of hand-crafted work. The LLM-prompted outputs are often good enough to serve as provocations to start the OODA loop. We can get more prototypes out faster to test our problem framing, our solution concepts. Writers are advised to \"kill their darlings.\" When our darlings are cheap to produce, it should be easier to kill them, and in so doing, we can iteratively prototype our way to better solutions. During check-ins, seniors act as sounding boards and collaboration partners. Check-ins also serve as time-boxes to keep the work moving forward through the OODA loops: for juniors, it can be tempting to linger in the Observe and Orient steps, mistaking thoroughness for progress.",
+      "<strong>Critique</strong>",
+      "Seniors can now critique through the loops: are the conclusions from the Observe step accurate? Are the hypotheses from the Orient step structurally and critically sound? Are the decisions valid, given what was gleaned from the Observe and Orient steps? Only after these conversations do we move on to the Act step–the final polish.",
+      "<strong>Reflect</strong>",
+      "In order to make learning intentional, reflection after every project or at least quarterly brings self-awareness and critical thinking to the process of learning to go through the OODA loop. What were we proud of with this project? What did we learn? What might we do differently if we could do it again? Reflections are the fuel for compounding our learning: instead of simply moving on mindlessly to the next project, we're actively seeking connections and missteps. Reflections help us create heuristics more quickly and intentionally.",
+      "Check-in, critique, and reflect are how we make each loop count — building the Orient capacity that turns juniors into seniors who can own the loop.",
+      "<strong>A caveat</strong>",
+      "I want to stress that coaching requires psychological safety. This is coaching, not interrogation. My proposed approach falls apart without psychological safety. Psychological safety creates the conditions for juniors to hear what seniors are saying. Without psychological safety, the in-loop check-ins will come across as criticism rather than critique, lack of trust rather than collaboration.",
+      "<strong>Protect the seed corn</strong>",
+      "Skipping juniors buys us short-term loop velocity at the cost of long-term capacity building. Like senior designers, junior designers are also not in the loop to produce artifacts. They're in the loop to develop Boyd's orientation capacity–capacity that makes them valuable seniors later. A team that stops hiring juniors is a team that stops growing its next generation of people who can own the loop. It's a team that eats its seed corn.<sup>1</sup>",
+      "<sup>1</sup> Thanks to Gagan Diesh who introduced this concept to me."
+    ]
+  },
+  {
     "id": "own-the-loop",
     "title": "Own the Loop",
     "subtitle": "",
