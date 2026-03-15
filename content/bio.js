@@ -8,7 +8,7 @@ window.SITE_CONTENT.bio = {
   "body": [
     "I shape the work and find the intersection of what's ideal and what's possible: the system that governs the problem / opportunity space, the technology available or affordable, the time available.",
     "I think in systems and work through facilitating a shared understanding of the problem / opportunity / solution space. I'm equally confident being strategic and being tactical.",
-    "Outside of design, I'm a watercolour artist, dinghy sailor, <a href=\"https://scubagirl.ca\" target=\"_self\" style=\"text-decoration:underline;text-underline-offset:3px;color:inherit;\">underwater photographer</a>, and a mom to two fluffy cats."
+    "Outside of design, I'm a watercolour artist, dinghy sailor, <a href=\"http://scubagirl.ca\" target=\"_self\" style=\"text-decoration:underline;text-underline-offset:3px;color:inherit;\">underwater photographer</a>, and a mom to two fluffy cats."
   ],
   "headshot": "images/headshot/andrea.jpg",
   "skills": [
