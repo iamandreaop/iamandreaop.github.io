@@ -68,6 +68,7 @@ p + p { margin-top: 1.2em; }
 .container--narrow { max-width: var(--max-width-narrow); margin: 0 auto; padding: 0 var(--space-md); }
 
 section { padding: var(--space-xl) 0; }
+#blog { padding-top: 0; }
 
 
 /* --- Navigation --- */
@@ -156,7 +157,6 @@ section { padding: var(--space-xl) 0; }
 
 /* --- Hero --- */
 .hero {
-  min-height: 90vh;
   display: flex;
   align-items: center;
   padding-top: 5rem;
@@ -961,7 +961,7 @@ section { padding: var(--space-xl) 0; }
 
 @media (max-width: 768px) {
   section { padding: var(--space-lg) 0; }
-  .hero { min-height: 80vh; }
+  .hero { min-height: auto; }
 
   .nav__links {
     position: fixed;
