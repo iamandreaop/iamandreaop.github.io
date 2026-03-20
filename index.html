@@ -36,18 +36,21 @@
 </head>
 <body>
 
+  <!-- Skip Navigation -->
+  <a href="#app" class="skip-link">Skip to main content</a>
+
   <!-- Navigation -->
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="#" class="nav__logo"><img src="images/nav-logo.jpg" alt="Andrea Ong"></a>
-      <div class="nav__links">
-        <a href="#blog" class="nav__link">Blog</a>
-        <a href="#case-studies" class="nav__link">Work</a>
-        <a href="#coaching" class="nav__link">Coaching</a>
-        <a href="#about" class="nav__link">About</a>
-        <a href="#contact" class="nav__link">Contact</a>
+      <div class="nav__links" id="nav-links" role="list">
+        <a href="#blog" class="nav__link" role="listitem">Blog</a>
+        <a href="#case-studies" class="nav__link" role="listitem">Work</a>
+        <a href="#coaching" class="nav__link" role="listitem">Coaching</a>
+        <a href="#about" class="nav__link" role="listitem">About</a>
+        <a href="#contact" class="nav__link" role="listitem">Contact</a>
       </div>
-      <button class="nav__toggle" aria-label="Toggle navigation">
+      <button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
         <span></span>
         <span></span>
         <span></span>

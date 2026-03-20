@@ -68,7 +68,7 @@
       <section class="blog-section" id="blog">
         <div class="container">
           <div class="section-header reveal">
-            <h4>Insights & Notes</h4>
+            <p class="section-label">Insights & Notes</p>
             <h2>Blog</h2>
           </div>
           <div class="blog-grid stagger-children">
@@ -95,7 +95,7 @@
       <section class="case-studies" id="case-studies">
         <div class="container">
           <div class="section-header reveal">
-            <h4>Selected Work</h4>
+            <p class="section-label">Selected Work</p>
             <h2>Case Studies</h2>
           </div>
           <div class="case-studies-grid stagger-children">
@@ -220,14 +220,14 @@
               ${createImageOrPlaceholder(bio.headshot, 'Andrea Ong', 'Headshot')}
             </div>
             <div class="about__content reveal">
-              <h4>About</h4>
+              <p class="section-label">About</p>
               <h2>Andrea Ong</h2>
               <p class="about__intro">${bio.intro || ''}</p>
               <div class="about__body">
                 ${(bio.body || []).map(p => `<p>${p}</p>`).join('')}
               </div>
               <div class="about__skills">
-                <h4>Expertise</h4>
+                <p class="section-label">Expertise</p>
                 <div class="skills-list">
                   ${(bio.skills || []).map(s => `<span class="skill-tag">${s}</span>`).join('')}
                 </div>
@@ -241,7 +241,7 @@
       <section class="contact" id="contact">
         <div class="container">
           <div class="reveal">
-            <h4>Get in Touch</h4>
+            <p class="section-label">Get in Touch</p>
             <h2>Let's work together</h2>
             <p class="text-large">Have a project in mind or just want to connect?<br>I'd love to hear from you.</p>
           </div>
@@ -265,6 +265,7 @@
     `;
 
     initAnimations();
+    moveFocusToContent();
   }
 
   // --- Render: Case Study Detail ---
@@ -324,6 +325,7 @@
     `;
 
     initAnimations();
+    moveFocusToContent();
   }
 
   // --- Password Gate ---
@@ -344,15 +346,17 @@
           <h2>Protected Content</h2>
           <p>This section is password protected.<br>Enter the password to continue.</p>
           <form class="password-gate__form" id="password-gate-form">
+            <label for="password-gate-input" class="sr-only">Password</label>
             <input
               type="password"
               class="password-gate__input"
               id="password-gate-input"
               placeholder="Password"
               autocomplete="current-password"
+              aria-describedby="password-gate-error"
               autofocus
             >
-            <div class="password-gate__error" id="password-gate-error"></div>
+            <div class="password-gate__error" id="password-gate-error" role="alert" aria-live="polite"></div>
             <button type="submit" class="btn btn--primary" style="width:100%;">
               Unlock <span class="btn__arrow">&rarr;</span>
             </button>
@@ -374,8 +378,7 @@
       e.preventDefault();
       if (input.value === BLOG_PASSWORD) {
         sessionStorage.setItem(SESSION_KEY, 'true');
-        renderHome();
-        scrollToSection('case-studies');
+        renderCaseStudy(id);
       } else {
         errorEl.textContent = 'Incorrect password. Please try again.';
         input.classList.add('error');
@@ -423,6 +426,7 @@
     `;
 
     initAnimations();
+    moveFocusToContent();
   }
 
   // --- Navigation ---
@@ -432,6 +436,12 @@
     const links = document.querySelector('.nav__links');
     const overlay = document.querySelector('.nav__overlay');
 
+    function closeMenu() {
+      links.classList.remove('open');
+      overlay.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
     // Scroll effect
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
@@ -440,24 +450,32 @@
     // Mobile toggle
     if (toggle) {
       toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
+        const isOpen = links.classList.toggle('open');
         overlay.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        if (isOpen) {
+          const firstLink = links.querySelector('.nav__link');
+          if (firstLink) firstLink.focus();
+        }
       });
     }
 
+    // Close on overlay click
     if (overlay) {
-      overlay.addEventListener('click', () => {
-        links.classList.remove('open');
-        overlay.classList.remove('open');
-      });
+      overlay.addEventListener('click', closeMenu);
     }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
 
     // Close on link click
     document.querySelectorAll('.nav__link').forEach(link => {
-      link.addEventListener('click', () => {
-        links.classList.remove('open');
-        overlay.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
     });
   }
 
@@ -475,6 +493,17 @@
     document.querySelectorAll('.reveal, .stagger-children').forEach(el => observer.observe(el));
   }
 
+  // --- Focus Management (accessibility) ---
+  function moveFocusToContent() {
+    const app = document.getElementById('app');
+    const heading = app.querySelector('h1');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus();
+      heading.removeAttribute('tabindex');
+    }
+  }
+
   // --- Smooth Scroll to Section ---
   function scrollToSection(sectionId) {
     setTimeout(() => {
@@ -485,6 +514,20 @@
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }, 100);
+  }
+
+  // --- Active Nav Link ---
+  function updateActiveNavLink() {
+    const hash = window.location.hash || '';
+    document.querySelectorAll('.nav__link').forEach(link => {
+      link.removeAttribute('aria-current');
+      const href = link.getAttribute('href');
+      if (href === hash ||
+          (hash.startsWith('#blog/') && href === '#blog') ||
+          (hash.startsWith('#case-study/') && href === '#case-studies')) {
+        link.setAttribute('aria-current', 'page');
+      }
+    });
   }
 
   // --- Router Handler ---
@@ -505,6 +548,8 @@
         scrollToSection(route.section);
       }
     }
+
+    updateActiveNavLink();
   }
 
   // --- Contact Form ---
@@ -584,8 +629,8 @@
         <div class="footer__inner">
           <p class="footer__copyright">&copy; ${year} ${settings.siteName || ''}. All rights reserved.</p>
           <div class="footer__social">
-            ${social.linkedin ? `<a href="${social.linkedin}" target="_blank" rel="noopener">LinkedIn</a>` : ''}
-            ${social.instagram ? `<a href="${social.instagram}" target="_blank" rel="noopener">Instagram</a>` : ''}
+            ${social.linkedin ? `<a href="${social.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new window)">LinkedIn</a>` : ''}
+            ${social.instagram ? `<a href="${social.instagram}" target="_blank" rel="noopener" aria-label="Instagram (opens in new window)">Instagram</a>` : ''}
           </div>
         </div>
       </div>
