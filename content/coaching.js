@@ -41,15 +41,15 @@ window.SITE_CONTENT.coaching = {
         "tiers": [
           {
             "level": "Early career (fewer than 3 years in practice)",
-            "rate": "C$100 / hour"
+            "rate": "C$50 / hour"
           },
           {
             "level": "Mid-career (3 to 5 years in practice)",
-            "rate": "C$150 / hour"
+            "rate": "C$75 / hour"
           },
           {
             "level": "Seniors (5+ years in practice)",
-            "rate": "C$200 / hour"
+            "rate": "C$100 / hour"
           }
         ]
       }
