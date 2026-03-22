@@ -4,6 +4,33 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "simplicity-art-of-maximizing-work-not-done",
+    "title": "Simplicity: the art of maximizing the amount of work not done",
+    "subtitle": "",
+    "date": "2026-03-22",
+    "image": "images/blog/maximize-thumb.jpg",
+    "tags": [
+      "Design",
+      "Strategy",
+      "Product",
+      "Agile"
+    ],
+    "content": [
+      "Spent the weekend thinking through what an equitable and ethical version of a coaching platform might look like. What if the coaches were respected for their time and compensated at something resembling minimum wage? What if coaching clients had some financial skin in the game and therefore accountability? Meet Design Coaches, a platform with a roster of coaches curated through my personal network.",
+      "Unsurprisingly, the real work this weekend wasn't designing the platform's interface. It was designing the minimum surface area needed to test whether the platform is worth building at all.",
+      "The tenth principle in the Agile Manifesto is &ldquo;Simplicity–the art of maximizing the amount of work not done–is essential.&rdquo; Lean UX applied it to product: the goal is to learn as fast as possible with as little build as possible.",
+      "The important design work I did this weekend wasn't the UI design. It was designing the idea and how I might validate my idea as quickly as possible.",
+      "<strong>Three lessons drawn from designing Design Coaches</strong>",
+      "<strong>1. Start with the constraint, not the feature list.</strong> I started with a list of constraints: no-code, public-facing, design niche–three constraints that eliminated wrong decisions before they were made. Sure, dreaming up features are fun, but that wasn't going to help me figure out if Design Coaches would find product market fit.",
+      "<strong>2. The tech is not the product.</strong> Recruiting and retaining coaches, finding coaching clients–these are the critical work that needs doing. The tech doesn't matter until my product backbone is solid.",
+      "<strong>3. Values clarify decisions faster than requirements.</strong> While wrestling with the pricing model, it quickly became clear that I didn't want Design Coaches to be exploitation dressed up as community. That resolved the direction I took with pricing model (not free) and the competitive positioning. I did a LinkedIn poll and respondents overwhelmingly chose the fee-based options. It remains to be seen whether this will pan out: what people say they'll do aren't always what they will, in fact, do.",
+      "<strong>What's next?</strong>",
+      "I built out a Notion page, set up a Google account and calendar booking link. I'm now in the process of connecting with my network of coaches to gather more feedback on the idea and recruit them to join me on this journey.",
+      "I'd like to take this idea into a free beta as soon as I've curated a roster of ten trusted coaches. Then I'll invite prospective clients to check them out and see if matches happen.",
+      "And then I'll wait and learn."
+    ]
+  },
+  {
     "id": "leadership-is-more-than-leading-design",
     "title": "Leadership is More Than Leading Design",
     "subtitle": "Sketchnotes from Peter Merholz's talk at Leading Design 2024",
