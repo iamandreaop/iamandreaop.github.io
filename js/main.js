@@ -40,6 +40,7 @@
     if (hash.startsWith('blog/')) return { page: 'blog', id: hash.slice(5) };
     if (hash === 'case-studies') return { page: 'home', section: 'case-studies' };
     if (hash === 'blog') return { page: 'home', section: 'blog' };
+    if (hash === 'coaching') return { page: 'home', section: 'coaching' };
     if (hash === 'about') return { page: 'home', section: 'about' };
     if (hash === 'contact') return { page: 'home', section: 'contact' };
     return { page: 'home' };
