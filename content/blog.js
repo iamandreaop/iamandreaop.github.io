@@ -4,6 +4,26 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "what-is-influence-anyway",
+    "title": "What is influence anyway?",
+    "subtitle": "",
+    "date": "2026-04-11",
+    "image": "images/blog/influence-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "<strong>What is Influence?</strong>",
+      "Most of us would be hard pressed to define what influence at work means. Is it being likeable? Having a strong opinion? Getting credit for your ideas?",
+      "Influence is the degree to which our thinking shapes decisions we're not making alone. It's not influence if no one acts on what we say. Having a strong opinion is not influence if it stays in the room. Visibility is not influence if it doesn't change anything downstream.",
+      "Is it possible to be an a**hole and still be influential? Yes. Affability makes collaboration easier, but it has nothing to do with whether our thinking shapes decisions. We've all worked with brilliant, difficult people whose framing dominated every room they walked into. I mean, ideally, don't be an a**hole.",
+      "Influential people are often those whose framing everyone else ends up using — sometimes without noticing. This is also why influence is harder to build than authority. Authority is granted. A title, a reporting line, a mandate — someone gives us these things. Influence is not conferred; it's constructed, relationship by relationship, decision by decision, over time. No one can give us influence. We earn it ourselves. This also means no one can take it away from us, either, unlike a job or a title.",
+      "So what does it actually look like in practice? That's next."
+    ]
+  },
+  {
     "id": "why-asking-for-a-promotion-is-the-wrong-question",
     "title": "Why asking for a promotion is the wrong question",
     "subtitle": "",
