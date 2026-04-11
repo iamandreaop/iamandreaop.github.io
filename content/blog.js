@@ -4,6 +4,35 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "how-to-build-influence",
+    "title": "How to Build Influence",
+    "subtitle": "",
+    "date": "2026-04-11",
+    "image": "images/blog/influence2-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "Influence isn't conferred — it's built. And like most practices worth having, it's less about grand gestures and more about consistent small ones.",
+      "Here's what actually builds it:",
+      "<strong>Show your thinking, not just your conclusions</strong>",
+      "The designer who says \"we should do X\" is easy to ignore. The designer who says \"here's what I observed, here's what it means, here's why X follows\" is much harder to dismiss. Influence starts with making our reasoning visible. If we expose our reasoning, our stakeholders have a place from which to react. It also gives us the scope to invite critique of the reasoning, not the solution. This avoids the classic \"I just don't like it\" reaction.",
+      "<strong>Collaborate on the problem, not just the solution</strong>",
+      "Designers are trained to solve problems. But the most influential designers know that the problem statement itself is rarely settled — it's a hypothesis worth examining. Taking someone's problem at face value is a missed opportunity. Rejecting it outright is a dead end. The move is to create space to define it together: \"before we go further, can we align on what we're actually solving for?\" That question, asked well, positions us as a strategic partner rather than an executor. And it shifts the conversation upstream — which is exactly where influence lives.",
+      "<strong>Be useful outside our lane</strong>",
+      "Influence doesn't scale if it only works on our own team. The designers who build org-wide influence are the ones who bring something valuable into rooms we weren't assigned to — a perspective, a question, a connection someone else missed. Not as a performance. As a habit.",
+      "<strong>Speak outcomes, not craft</strong>",
+      "Designers have a habit of leading with the visible trappings of our work — the pattern used, the component chosen, the system followed. In a room full of designers, that's fine. In any other room, it weakens our position. It signals that we're thinking about the how, not the why. The more powerful move is to leave the craft vocabulary at the door and speak in outcomes: not \"we used this navigation pattern\" but \"this approach is easier to navigate, which means customers find what they need faster.\" Same decision, different register. One sounds like a craftsperson reporting back. The other sounds like someone who understands what the business is actually trying to do.",
+      "<strong>Follow through smaller than we think</strong>",
+      "Trust is built in small kept promises, not large declared intentions. If we say we'll look into something, look into it. If we say we'll connect two people, connect them. Influence is on credit — and credit is extended based on track record.",
+      "<strong>Give your framing away</strong>",
+      "This one is counterintuitive. If our idea gets adopted but our name gets dropped, that's not a loss — that's influence working. The goal isn't attribution: it's adoption. Designers who hoard credit shrink their influence. Designers who circulate good thinking expand it.",
+      "Influence compounds. The more decisions our thinking shapes, the more people seek our thinking for the next decision. But it starts small — one room, one conversation, one well-reasoned position at a time."
+    ]
+  },
+  {
     "id": "what-is-influence-anyway",
     "title": "What is influence anyway?",
     "subtitle": "",
