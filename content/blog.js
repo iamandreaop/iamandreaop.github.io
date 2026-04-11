@@ -4,6 +4,28 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "why-asking-for-a-promotion-is-the-wrong-question",
+    "title": "Why asking for a promotion is the wrong question",
+    "subtitle": "",
+    "date": "2026-04-11",
+    "image": "images/blog/ladder-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "This conversation happens in every design org, usually once a year, sometimes more: a senior designer sits down with their manager and asks: <em>am I on track for promotion?</em> or <em>when will I get a promotion?</em>",
+      "It feels like the right question. It's direct, it's honest, it shows ambition. But it's actually asking someone else to assess an outcome you should be building yourself. Before you get your knickers in a twist, hear me out.",
+      "Here's the problem with that question: a promotion is a lagging indicator. Like profit on a quarterly report, it reflects decisions that were already made — about your work, your relationships, your influence — long before you sat down in that meeting. By the time you're asking if you're on track, the answer is largely already written.",
+      "Profit doesn't come from chasing profit. It comes from delivering value to customers who reward you with revenue. Chase the number directly and you'll start cutting the very things generating it. Title works the same way.",
+      "The designers who get promoted aren't optimizing for promotion — they're building the underlying asset that makes the title inevitable. Lagging indicators are seductive because they're legible — easy to compare, easy to report, easy to put on a LinkedIn profile. They're the ones who made the promotion almost beside the point — because they'd already built what the title was supposed to signal.",
+      "So if title is the output, what are the inputs?",
+      "That's the right question.",
+      "Next up, we'll talk about what the inputs are."
+    ]
+  },
+  {
     "id": "simplicity-art-of-maximizing-work-not-done",
     "title": "Simplicity: the art of maximizing the amount of work not done",
     "subtitle": "",
