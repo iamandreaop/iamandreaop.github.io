@@ -5,7 +5,7 @@ window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
     "id": "how-to-know-if-you-have-influence",
-    "title": "How to Know if You Have Influence",
+    "title": "How to Know if We Have Influence",
     "subtitle": "",
     "date": "2026-04-11",
     "image": "images/blog/shadow-thumb.jpg",
