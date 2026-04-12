@@ -4,6 +4,27 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "how-to-know-if-you-have-influence",
+    "title": "How to Know if You Have Influence",
+    "subtitle": "",
+    "date": "2026-04-11",
+    "image": "images/blog/shadow-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "Influence is hard to measure directly — which is partly why designers default to tracking titles instead. But just because it's harder to see doesn't mean it's invisible. There are signals, if we know what to look for.",
+      "Here are four questions worth asking:",
+      "<strong>Who seeks our input without being asked?</strong> Not \"who responds when we speak up\" — that's just politeness. The signal is unsolicited: people who come to us before a decision is made, before a direction is set, because they want our thinking in the room before the room gets started. If that's happening across teams, not just our own, we're building something real.",
+      "<strong>Are we in rooms before decisions, or after?</strong> Being consulted after a direction is set is not influence — it's review. Influence means being present when the problem is still open, when the framing is still negotiable, when our input can actually change the outcome. If we're consulted after the decision has been made, our perspective was never really needed.",
+      "<strong>Do people act on our thinking, or just agree with it?</strong> Agreement is cheap. Watch what happens after the meeting. Did the framing shift? Did someone use our language in the next conversation? Did the approach change? Influence leaves a trace in decisions and language, not just in nodding heads.",
+      "<strong>Is our influence growing beyond our immediate team?</strong> Influence that stays local is fragile — it depends on one set of relationships, one manager, one team's continued goodwill. The question isn't just whether we have influence now, but whether it's expanding. New teams seeking us out, cross-functional invitations, our thinking showing up in conversations we weren't part of — these are the growth signals.",
+      "If most of these are pointing in the right direction, the title question starts to answer itself. And if they're not — that's more useful information than any promotion conversation will give us."
+    ]
+  },
+  {
     "id": "how-to-build-influence",
     "title": "How to Build Influence",
     "subtitle": "",
