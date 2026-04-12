@@ -4,6 +4,27 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "promoted-to-incompetence",
+    "title": "Promoted to Incompetence",
+    "subtitle": "",
+    "date": "2026-04-12",
+    "image": "images/blog/trap-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "There's a version of career success that arrives before we're ready for it. We get the promotion. The title changes. And then, six months in, we're drowning.",
+      "This is the Peter Principle at work: in most organizations, people get promoted until they reach their level of incompetence. Not because we lack talent — but because the skills that made us excellent at one level aren't the skills the next level requires.",
+      "For designers, this plays out in a specific way. Senior designers are promoted into leadership for the quality of their craft — the thinking, the making, the solving. But the next level isn't more of that. It's leading others who do that. Influencing without directing. Shaping outcomes through people rather than through our own hands.",
+      "Consider a senior designer who's exceptional at systems thinking. She can see how a single component decision ripples across a product. She gets promoted to design lead. Now, her job is to help five other designers develop that same instinct — not to exercise it herself. The skill she was rewarded for is the skill she has to let go of. At least as her primary tool.",
+      "That's the trap. And it's harder to recover from than most of us expect. Being a senior designer who's still growing is normal. Being a new lead who's visibly struggling is a much more exposed position.",
+      "This is why the most durable path to the next level is to already be operating there before the title arrives. Not performing it — actually doing it. Building influence across teams. Shaping decisions upstream. Developing other designers. If we're doing those things consistently, the promotion becomes a recognition of reality, not a bet on potential.",
+      "The title should confirm what's already true. When it does, it fits. When it doesn't — when it arrives ahead of the capability — it becomes a trap."
+    ]
+  },
+  {
     "id": "how-to-know-if-you-have-influence",
     "title": "How to Know if We Have Influence",
     "subtitle": "",
