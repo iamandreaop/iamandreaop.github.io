@@ -4,6 +4,43 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "board-of-mirrors",
+    "title": "Board of Mirrors",
+    "subtitle": "",
+    "date": "2026-04-12",
+    "image": "images/blog/mirrors-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Coaching"
+    ],
+    "content": [
+      "We're not one person at work. We're many — and we need witnesses to all of them.",
+      "You've probably heard the advice: build a personal board of directors. Curate a group of trusted advisors. Surround yourself with people who will help you grow.",
+      "Good advice. But I want to offer a different frame.",
+      "The people on my board aren't just advisors. They're mirrors. Each one reflects a version of me I couldn't fully see on my own. And it took me a long time to realize that what I was really building wasn't a network — it was a way of knowing myself more completely.",
+      "Here's who's on my board, and what each of them shows me.",
+      "<strong>Mirror one: the Honest Critic</strong>",
+      "She won't let me lie to myself. Not gently, not diplomatically — she just won't allow it. When I've dressed up a bad decision in the language of strategy, she sees through it. When I'm performing confidence I don't feel, she knows. She reflects back the version of me that is most true, even when that's uncomfortable. Every board needs someone who loves you enough to refuse your fiction.",
+      "<strong>Mirror two: the Sponsor</strong>",
+      "I didn't have one of these for most of my career, and I didn't fully understand what I was missing. A mentor gives you advice. A sponsor puts their name next to yours in rooms you're not in. Mine recognized what I'm capable of and instead of feeling threatened, acted on it. I am where I am right now because of him. I don't say that lightly. The gratitude I feel is something I carry with me every single day.",
+      "<strong>Mirror three: the Wise Elder</strong>",
+      "He sees the intellectual nerd in me — and feeds the nerd. Our conversations don't start with my career or my problems. They start with ideas. Philosophy, systems, the history of how things came to be. He reflects back a version of me that I sometimes forget exists in the grind of the workday: curious, hungry, lit up by thinking. He's a whetstone for the mind. My intellect grows because of him.",
+      "<strong>Mirror four: the Peer Mirror</strong>",
+      "She's at my level, doing work that's meaningfully similar to mine. What she reflects back isn't flattery — it's calibration. Am I doing this right? Am I holding the bar where it should be? Is this normal, or am I off? She helps me see my professional self more accurately than I can from inside my own head. There's a particular kind of clarity that only comes from talking to someone who is truly in it with you.",
+      "<strong>Mirror five: the Outside View</strong>",
+      "She's a product manager. Her world is different from mine — different vocabulary, different pressures, different rhythms. And yet when we talk, there's an immediate recognition: we are struggling with the same things. She reflects back the version of me that is simply human. Not a designer, not a leader, not a person with a title — just someone navigating a complicated world of work, doing her best. Sometimes the most important mirror isn't the one that shows you your strengths. It's the one that shows you that you're not alone.",
+      "<strong>Mirror six: the Apprentice</strong>",
+      "She's earlier in her career, and she challenges me in a way no one else does: she makes me prove that my approaches actually work. If my coaching lands, she grows. If it doesn't, I have to try something different. Right now, she's struggling to see that technical excellence and organizational influence aren't the same thing. I'm trying everything – and none of it is landing. She reflects back my effectiveness as a teacher and a manager — not through evaluation, but through response. She keeps me from settling into a version of leadership that is more comfortable than it is useful.",
+      "<strong>Mirror seven: the Navigator</strong>",
+      "This is the one I didn't have a name for until recently. She doesn't advise me on my career in the broad sense — she orients me in the specific terrain of where I am right now. She understands the political landscape, the unwritten rules, who matters and why. She feeds me context I wouldn't otherwise have. She reflects back the version of me that is new to this environment and helps me know where I am, where I should bring my attention, and where the traps are.",
+      "Seven people. Seven mirrors. Seven versions of me I couldn't fully hold on my own.",
+      "Here's what I want you to notice: I didn't build this board from scratch. I didn't sit down with a template and go looking for archetypes. These relationships existed. What changed was that I started recognizing what each one was showing me — and because of that, I started showing up to each relationship more intentionally.",
+      "Naming the mirror changes how you stand in front of it.",
+      "So: who's already on your board? Who sees a version of you that no one else does? And — maybe more importantly — which version of you has no witness yet?"
+    ]
+  },
+  {
     "id": "why-titles-do-matter",
     "title": "Why Titles Do Matter",
     "subtitle": "",
