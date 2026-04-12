@@ -4,6 +4,27 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "why-titles-do-matter",
+    "title": "Why Titles Do Matter",
+    "subtitle": "",
+    "date": "2026-04-12",
+    "image": "images/blog/title-thumb.jpg",
+    "tags": [
+      "Leadership",
+      "Career",
+      "Design"
+    ],
+    "content": [
+      "If you've read this far, you might think the argument is that titles don't matter. It isn't.",
+      "Titles matter. Just not for the reasons most of us think.",
+      "A title isn't primarily for us — it's for everyone else. It's an introduction we don't have to make ourselves. In a large organization, most people rely on proxies to assess us quickly. The title is one of the loudest.",
+      "Without a title, we're doing invisible work. We might have the ear of our immediate peers, the respect of our team, the trust of our manager. But walk into a room full of people who don't know us, and we're starting from zero every time. The title buys us a starting position. It won't win us influence, but it gets us a voice among strangers.",
+      "A title also creates organizational legibility — it makes our scope visible and our mandate harder to erode. Without it, our influence depends entirely on the continued goodwill of the people who extend it. When a sponsor leaves, when priorities shift, when a new executive arrives with their own agenda — influence without structural backing is fragile in ways that are easy to underestimate when things are going well.",
+      "Finally, titles confer access. Some rooms have formal prerequisites. Some decisions get made at levels that have names attached to them. Influence can get us close, but sometimes we need the title to get us in.",
+      "So the argument isn't that titles are vanity. It's that they're infrastructure — necessary but not sufficient. Build the influence first. Let the title confirm it. In that order, it fits. In the other order, it's a trap we've already read about."
+    ]
+  },
+  {
     "id": "promoted-to-incompetence",
     "title": "Promoted to Incompetence",
     "subtitle": "",
