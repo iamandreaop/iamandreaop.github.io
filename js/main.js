@@ -489,9 +489,11 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.reveal, .stagger-children').forEach(el => observer.observe(el));
+    // Observe individual cards so tall grids don't block the trigger on mobile
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.stagger-children > *').forEach(el => observer.observe(el));
   }
 
   // --- Focus Management (accessibility) ---
