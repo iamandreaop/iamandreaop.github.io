@@ -4,6 +4,35 @@
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 window.SITE_CONTENT.blog = [
   {
+    "id": "the-ooda-designers",
+    "title": "The Great Sorting",
+    "subtitle": "",
+    "date": "2026-04-13",
+    "image": "images/blog/designers-thumb.jpg",
+    "tags": [
+      "AI",
+      "Design",
+      "Leadership",
+      "Strategy"
+    ],
+    "content": [
+      "There's a sorting happening in the design profession right now. AI tools have exposed a fault line that was always there — we just didn't have the pressure to reveal it. Three distinct groups are emerging, and where you land has less to do with your job title or years of experience than with something harder to name: whether you're actually thinking, or just moving.",
+      "<strong>Group one: The interrogators</strong>",
+      "These are designers with enough accumulated pattern recognition that they can do something most people can't — they can tell when something is wrong before they can articulate why. They've seen enough design decisions play out across enough contexts to run through Boyd's OODA loop meaningfully. Their Orientation, in Boyd's sense, is dense. When they look at an AI-generated output, a proposed interaction pattern, or a design system decision, they're running it against a rich internal library. Not to find what matches, but to find what doesn't.",
+      "This is the OODA loop in practice. Observe. Orient. Decide. Act. The loop is fast and it's effective because it's grounded in expertise. They're not attached to their prior outputs — they're attached to getting it right. When the landscape shifts, they update. When the AI produces something genuinely novel, they can recognize it as novel rather than mistaking it for familiar.",
+      "This group will weather this period of transition not because they have experience, but because they're actively using it as context against which to run the OODA loop.",
+      "<strong>Group two: The production-anchored</strong>",
+      "These designers built their value proposition on execution: fast wireframes, clean UI, reliable delivery. For a long time, that was enough. It was more than enough — it was the job. The problem is that AI is now faster, cheaper, and infinitely patient. It doesn't push back on unreasonable timelines. It doesn't need a brief to produce something that looks like a first draft.",
+      "This group isn't failing: they're doing exactly what they were trained to do. But the layer of the stack they occupy is being squeezed out by LLMs, and the path forward requires a fundamental re-orientation, not just skill acquisition. Re-orientation means shifting their identity from maker to director and learning to treat AI output as raw material to be shaped by judgment, rather than judgment being expressed through making. What they're being asked to give up is the thing that made them feel like designers in the first place.",
+      "<strong>Group three: The AI-native but ungrounded</strong>",
+      "This group moves fast. They're fluent in generative tools, comfortable with prompting, and can produce volume that would have been unthinkable two years ago. They're genuinely fast at generating options — a real capability in time-pressured environments. But speed without accurate Orientation just gets you confidently wrong, faster. Without a strong grounding in design fundamentals, they can't reliably evaluate what comes back. They don't know when a pattern doesn't transfer, when the AI is hallucinating a convention that doesn't exist, or when the output is locally coherent but systemically broken. They're looping — but they're looping on a flawed mental model. And in organizations where no one is checking, that compounds invisibly until something fails in production or in the market.",
+      "This group is dependent on the first group to curate their outputs, catch their errors, and tell them when to stop. Whether they acknowledge that dependency is another question.",
+      "<strong>What this means</strong>",
+      "The design profession is not disappearing. But it is stratifying — more sharply, more quickly, than most people are comfortable admitting. The designers who will define what comes next are the ones who treat AI as a sparring partner rather than an oracle, who push back, who interrogate outputs, who update their own mental models when the evidence demands it.",
+      "That's not a technology question. It's a thinking question. It always was."
+    ]
+  },
+  {
     "id": "board-of-mirrors",
     "title": "Board of Mirrors",
     "subtitle": "",
